@@ -36,9 +36,9 @@ const datasets = {
     },
     imbalanced: {
         // Few positive cases - only 10 pneumonia patients out of 100
-        // Moderate separation - similar to real clinical scenarios
+        // Poor discrimination - AUC ~0.5
         pneumonia: [
-            45, 52, 58, 63, 68, 72, 76, 80, 85, 90
+            12, 18, 25, 30, 34, 38, 42, 46, 50, 54
         ],
         healthy: [
             5, 8, 12, 15, 18, 22, 25, 28, 32, 35,
