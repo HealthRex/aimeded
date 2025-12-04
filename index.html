@@ -442,6 +442,42 @@
         }
 
         /* Quadrant explanations */
+        .quadrant-grid-container {
+            margin: 20px 0;
+        }
+
+        .quadrant-labels-top {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .quadrant-labels-top > div {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #4a5568;
+        }
+
+        .quadrant-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .quadrant-row-label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #4a5568;
+            text-align: right;
+        }
+
         .quadrant-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -623,30 +659,41 @@
             <h2>The Four Possible Outcomes</h2>
             <p>When an AI tool makes a prediction, there are four possible outcomes based on whether the prediction was correct and what the actual condition is:</p>
 
-            <div class="quadrant-grid">
-                <div class="quadrant-card tp-card">
-                    <h4>True Positive (TP)</h4>
-                    <p><strong>AI says:</strong> Pneumonia detected<br>
-                    <strong>Reality:</strong> Patient has pneumonia<br>
-                    <em>Correct alert — patient receives treatment</em></p>
+            <div class="quadrant-grid-container">
+                <div class="quadrant-labels-top">
+                    <div></div>
+                    <div>AI: Pneumonia</div>
+                    <div>AI: No Pneumonia</div>
                 </div>
-                <div class="quadrant-card fn-card">
-                    <h4>False Negative (FN)</h4>
-                    <p><strong>AI says:</strong> No pneumonia<br>
-                    <strong>Reality:</strong> Patient has pneumonia<br>
-                    <em>Missed case — delayed treatment</em></p>
+                <div class="quadrant-row">
+                    <div class="quadrant-row-label">Actually Has<br>Pneumonia</div>
+                    <div class="quadrant-card tp-card">
+                        <h4>True Positive (TP)</h4>
+                        <p><strong>AI says:</strong> Pneumonia detected<br>
+                        <strong>Reality:</strong> Patient has pneumonia<br>
+                        <em>Correct alert — patient receives treatment</em></p>
+                    </div>
+                    <div class="quadrant-card fn-card">
+                        <h4>False Negative (FN)</h4>
+                        <p><strong>AI says:</strong> No pneumonia<br>
+                        <strong>Reality:</strong> Patient has pneumonia<br>
+                        <em>Missed case — delayed treatment</em></p>
+                    </div>
                 </div>
-                <div class="quadrant-card fp-card">
-                    <h4>False Positive (FP)</h4>
-                    <p><strong>AI says:</strong> Pneumonia detected<br>
-                    <strong>Reality:</strong> Patient is healthy<br>
-                    <em>False alarm — unnecessary treatment</em></p>
-                </div>
-                <div class="quadrant-card tn-card">
-                    <h4>True Negative (TN)</h4>
-                    <p><strong>AI says:</strong> No pneumonia<br>
-                    <strong>Reality:</strong> Patient is healthy<br>
-                    <em>Correct clearance — patient reassured</em></p>
+                <div class="quadrant-row">
+                    <div class="quadrant-row-label">Actually<br>Healthy</div>
+                    <div class="quadrant-card fp-card">
+                        <h4>False Positive (FP)</h4>
+                        <p><strong>AI says:</strong> Pneumonia detected<br>
+                        <strong>Reality:</strong> Patient is healthy<br>
+                        <em>False alarm — unnecessary treatment</em></p>
+                    </div>
+                    <div class="quadrant-card tn-card">
+                        <h4>True Negative (TN)</h4>
+                        <p><strong>AI says:</strong> No pneumonia<br>
+                        <strong>Reality:</strong> Patient is healthy<br>
+                        <em>Correct clearance — patient reassured</em></p>
+                    </div>
                 </div>
             </div>
         </div>
