@@ -48,7 +48,7 @@ body {
     flex: 0 0 380px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .card {
@@ -530,7 +530,7 @@ h3 {
 /* ROC Curve */
 .roc-container {
     margin-top: 20px;
-    text-align: center;
+    text-align: right;
 }
 
 .roc-container h4 {
@@ -581,6 +581,80 @@ h3 {
 .auc-display span {
     font-weight: bold;
     color: #8C1515;
+}
+
+/* Accordion Styles */
+.accordion {
+    margin-bottom: 12px;
+}
+
+.accordion-header {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.accordion-header:hover {
+    border-color: #8C1515;
+    background: #fef5f5;
+}
+
+.accordion-header.active {
+    border-color: #8C1515;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: white;
+}
+
+.accordion-header h2 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1.2em;
+    color: #2e2d29;
+}
+
+.accordion-icon {
+    font-size: 1.4em;
+    color: #8C1515;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    display: none;
+    background: white;
+    border: 2px solid #8C1515;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 25px;
+    animation: slideDown 0.3s ease;
+}
+
+.accordion-content.show {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive */

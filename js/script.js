@@ -1,20 +1,20 @@
 // Patient data for different datasets
 const datasets = {
     separated: {
-        // Clear separation - pneumonia patients have higher scores
+        // Good separation with some overlap - AUC ~0.9
         pneumonia: [
-            55, 60, 62, 65, 68, 70, 72, 74, 76, 78,
-            80, 82, 84, 85, 86, 87, 88, 89, 90, 91,
-            92, 93, 94, 95, 96, 97, 98, 98, 99, 99
+            45, 52, 58, 62, 65, 68, 70, 72, 74, 76,
+            78, 80, 82, 84, 86, 88, 89, 90, 91, 92,
+            93, 94, 95, 96, 97, 98, 98, 99, 99, 99
         ],
         healthy: [
-            2, 4, 6, 8, 10, 12, 14, 16, 18, 20,
-            22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
-            42, 44, 45, 46, 47, 48, 49, 50, 51, 52,
-            10, 15, 20, 25, 28, 30, 32, 35, 38, 40,
-            5, 8, 12, 18, 22, 25, 28, 32, 35, 38,
-            3, 7, 11, 15, 19, 23, 27, 31, 35, 39,
-            6, 9, 13, 17, 21, 24, 29, 33, 37, 41
+            2, 5, 8, 10, 12, 15, 18, 20, 22, 25,
+            28, 30, 32, 35, 38, 40, 42, 44, 46, 48,
+            50, 52, 54, 56, 58, 60, 62, 64, 66, 68,
+            8, 12, 16, 20, 24, 28, 32, 36, 40, 44,
+            5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
+            6, 11, 16, 21, 26, 31, 36, 41, 46, 51,
+            4, 9, 14, 19, 24, 29, 34, 39, 44, 49
         ]
     },
     unseparated: {
@@ -36,20 +36,20 @@ const datasets = {
     },
     imbalanced: {
         // Few positive cases - only 10 pneumonia patients out of 100
-        // Poor discrimination - AUC ~0.5
+        // Good discrimination (high AUC) but low prevalence → low precision
         pneumonia: [
-            12, 18, 25, 30, 34, 38, 42, 46, 50, 54
+            75, 78, 82, 85, 88, 90, 92, 94, 96, 98
         ],
         healthy: [
             5, 8, 12, 15, 18, 22, 25, 28, 32, 35,
-            10, 14, 18, 22, 26, 30, 34, 38, 42, 46,
-            15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
-            12, 17, 22, 27, 32, 37, 42, 47, 52, 57,
-            8, 13, 18, 23, 28, 33, 38, 43, 48, 53,
-            6, 11, 16, 21, 26, 31, 36, 41, 46, 51,
-            10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
+            6, 10, 14, 18, 22, 26, 30, 34, 38, 42,
+            8, 12, 16, 20, 24, 28, 32, 36, 40, 44,
+            4, 9, 14, 19, 24, 29, 34, 39, 44, 48,
             7, 12, 17, 22, 27, 32, 37, 42, 47, 52,
-            9, 14, 19, 24, 29, 34, 39, 44, 49, 54
+            10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
+            6, 11, 16, 21, 26, 31, 36, 41, 46, 51,
+            8, 14, 20, 26, 32, 38, 44, 50, 56, 62,
+            5, 10, 16, 22, 28, 34, 40, 46, 52, 58
         ]
     }
 };
@@ -353,9 +353,9 @@ function drawROCCurve(currentFPR, currentTPR) {
 }
 
 const datasetExplanations = {
-    separated: "<strong>Severe Cases:</strong> ICU patients with large lobar pneumonia and high fevers. The AI easily distinguishes these obvious cases from healthy patients. This represents ideal conditions — but an AI validated only on severe cases may struggle with your more subtle outpatients.",
-    unseparated: "<strong>Subtle Cases:</strong> Outpatients with mild cough, low-grade fever, and early infiltrates. The sick and healthy patients look similar to the AI, making classification difficult. This is common in primary care screening where disease presents subtly.",
-    imbalanced: "<strong>Rare Disease:</strong> TB screening in a low-prevalence population — only 10% have the disease. Even with good discrimination, the low prevalence means false positives can outnumber true positives. Pay close attention to precision when screening for rare conditions."
+    separated: "<strong>Severe Cases:</strong> X-rays with obvious findings—large lobar consolidations, clear air bronchograms. The AI easily distinguishes these from normal studies.",
+    unseparated: "<strong>Subtle Cases:</strong> X-rays with subtle findings—faint infiltrates, retrocardiac opacities, or patterns that mimic artifact. The AI struggles to distinguish real pathology from noise.",
+    imbalanced: "<strong>Rare Disease:</strong> Screening a mostly healthy population — only 10% have pneumonia. The AI discriminates well (notice the high AUC), yet precision is still poor. Why? When disease is rare, even a few false positives outnumber the true positives."
 };
 
 function setDataset(name, btn) {
@@ -374,5 +374,22 @@ function setDataset(name, btn) {
     updateVisualization();
 }
 
+// Accordion functionality
+function setupAccordions() {
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            // Toggle current accordion
+            header.classList.toggle('active');
+            content.classList.toggle('show');
+        });
+    });
+}
+
 // Initialize on load
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', () => {
+    init();
+    setupAccordions();
+});
