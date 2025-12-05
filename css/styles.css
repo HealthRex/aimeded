@@ -162,13 +162,23 @@ h3 {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 4px;
+    width: 8px;
     background: linear-gradient(to bottom, #620059, #4a0042);
     cursor: ew-resize;
     z-index: 50;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 0 10px rgba(98, 0, 89, 0.5);
     animation: pulseGlow 1.5s ease-in-out 3;
+}
+
+.threshold-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -10px;
+    width: 28px;
+    cursor: ew-resize;
 }
 
 @keyframes pulseGlow {
