@@ -36,20 +36,20 @@ const datasets = {
     },
     imbalanced: {
         // Few positive cases - only 10 pneumonia patients out of 100
-        // Good discrimination (high AUC) but low prevalence → low precision
+        // Similar discrimination to Subtle Cases (AUC ~0.7) but lower prevalence
         pneumonia: [
-            75, 78, 82, 85, 88, 90, 92, 94, 96, 98
+            42, 50, 58, 65, 70, 75, 80, 85, 88, 92
         ],
         healthy: [
-            5, 8, 12, 15, 18, 22, 25, 28, 32, 35,
-            6, 10, 14, 18, 22, 26, 30, 34, 38, 42,
-            8, 12, 16, 20, 24, 28, 32, 36, 40, 44,
-            4, 9, 14, 19, 24, 29, 34, 39, 44, 48,
-            7, 12, 17, 22, 27, 32, 37, 42, 47, 52,
+            8, 12, 15, 18, 22, 25, 28, 32, 35, 38,
             10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
-            6, 11, 16, 21, 26, 31, 36, 41, 46, 51,
+            12, 18, 24, 30, 36, 42, 48, 54, 58, 62,
+            15, 22, 28, 35, 40, 45, 50, 55, 60, 65,
+            10, 16, 22, 28, 34, 40, 46, 52, 58, 64,
+            14, 20, 26, 32, 38, 44, 50, 56, 62, 68,
+            18, 25, 32, 38, 45, 52, 58, 64, 70, 72,
             8, 14, 20, 26, 32, 38, 44, 50, 56, 62,
-            5, 10, 16, 22, 28, 34, 40, 46, 52, 58
+            12, 18, 24, 30, 36, 42, 48, 54, 60, 66
         ]
     }
 };
@@ -355,7 +355,7 @@ function drawROCCurve(currentFPR, currentTPR) {
 const datasetExplanations = {
     separated: "<strong>Severe Cases:</strong> X-rays with obvious findings—large lobar consolidations, clear air bronchograms. The AI easily distinguishes these from normal studies.",
     unseparated: "<strong>Subtle Cases:</strong> X-rays with subtle findings—faint infiltrates, retrocardiac opacities, or patterns that mimic artifact. The AI struggles to distinguish real pathology from noise.",
-    imbalanced: "<strong>Rare Disease:</strong> Screening a mostly healthy population — only 10% have pneumonia. The AI discriminates well (notice the high AUC), yet precision is still poor. Why? When disease is rare, even a few false positives outnumber the true positives."
+    imbalanced: "<strong>Low Prevalence:</strong> Only 10% of patients have pneumonia. Compare to Subtle Cases: similar AUC, but precision is worse at the same threshold. Why? Fewer true positives means false positives dominate."
 };
 
 function setDataset(name, btn) {

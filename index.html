@@ -36,7 +36,7 @@
                     <div class="dataset-selector">
                         <button class="dataset-btn active" onclick="setDataset('separated', this)">Severe Cases</button>
                         <button class="dataset-btn" onclick="setDataset('unseparated', this)">Subtle Cases</button>
-                        <button class="dataset-btn" onclick="setDataset('imbalanced', this)">Rare Disease</button>
+                        <button class="dataset-btn" onclick="setDataset('imbalanced', this)">Low Prevalence</button>
                     </div>
                     <div class="dataset-explanation" id="datasetExplanation">
                         <strong>Severe Cases:</strong> ICU patients with large lobar pneumonia and high fevers. The AI easily distinguishes these obvious cases from healthy patients. This represents ideal conditions — but an AI validated only on severe cases may struggle with your more subtle outpatients.
@@ -232,8 +232,8 @@
                 </div>
 
                 <div class="scenario-box" style="margin-bottom: 15px;">
-                    <h3>3. Rare Disease</h3>
-                    <p>You're screening mostly healthy patients. Using <strong>"Rare Disease"</strong>, where would you set the threshold? What happens to precision?</p>
+                    <h3>3. Low Prevalence</h3>
+                    <p>Set the threshold to 50% in <strong>"Subtle Cases"</strong>, note the precision. Now switch to <strong>"Low Prevalence"</strong> at the same threshold. What happened to precision, and why?</p>
                 </div>
             </div>
         </div>
