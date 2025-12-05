@@ -250,6 +250,44 @@
             </div>
         </div>
 
+        <!-- Understanding Tradeoffs -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2>Understanding the Tradeoffs</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <p>Notice what happens when you move the threshold:</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div style="background: #e8f4f2; padding: 20px; border-radius: 10px; border-left: 4px solid #175E54;">
+                        <h3 style="color: #175E54; margin-bottom: 10px;">Lower Threshold (←)</h3>
+                        <ul style="margin-left: 20px; color: #175E54;">
+                            <li>More cases flagged as positive</li>
+                            <li><strong>Higher recall</strong> — catch more true pneumonia</li>
+                            <li><strong>Higher false positive rate</strong> — more false alarms</li>
+                            <li>Fewer missed cases, more unnecessary workup</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fef5f5; padding: 20px; border-radius: 10px; border-left: 4px solid #8C1515;">
+                        <h3 style="color: #8C1515; margin-bottom: 10px;">Higher Threshold (→)</h3>
+                        <ul style="margin-left: 20px; color: #820000;">
+                            <li>Fewer cases flagged as positive</li>
+                            <li><strong>Lower recall</strong> — miss more true pneumonia</li>
+                            <li><strong>Lower false positive rate</strong> — fewer false alarms</li>
+                            <li>More missed cases, less unnecessary workup</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scenario-box">
+                    <h3>Clinical Context Matters</h3>
+                    <p><strong>Emergency screening:</strong> Use a lower threshold. Missing pneumonia in a sick patient (false negative) is dangerous. Accept more false positives that can be ruled out with further testing.</p>
+                    <p style="margin-top: 10px;"><strong>Confirmatory testing:</strong> Use a higher threshold. You want high confidence before initiating aggressive treatment. False positives lead to unnecessary interventions.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Clinical Scenarios -->
         <div class="accordion">
             <div class="accordion-header">
@@ -291,44 +329,6 @@
                         <p>At 50% threshold in "Subtle Cases" (30% prevalence), a positive result might be ~50% likely to be true. In "Low Prevalence" (10% prevalence), that same positive result might only be ~25% likely to be true—because there are so few actual cases to find.</p>
                         <p><strong>Clinical implication:</strong> An AI validated in a high-prevalence ICU population may have poor precision when deployed in a low-prevalence outpatient clinic, even if the underlying discrimination is identical.</p>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Understanding Tradeoffs -->
-        <div class="accordion">
-            <div class="accordion-header">
-                <h2>Understanding the Tradeoffs</h2>
-                <span class="accordion-icon">+</span>
-            </div>
-            <div class="accordion-content">
-                <p>Notice what happens when you move the threshold:</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-                    <div style="background: #e8f4f2; padding: 20px; border-radius: 10px; border-left: 4px solid #175E54;">
-                        <h3 style="color: #175E54; margin-bottom: 10px;">Lower Threshold (←)</h3>
-                        <ul style="margin-left: 20px; color: #175E54;">
-                            <li>More cases flagged as positive</li>
-                            <li><strong>Higher recall</strong> — catch more true pneumonia</li>
-                            <li><strong>Higher false positive rate</strong> — more false alarms</li>
-                            <li>Fewer missed cases, more unnecessary workup</li>
-                        </ul>
-                    </div>
-                    <div style="background: #fef5f5; padding: 20px; border-radius: 10px; border-left: 4px solid #8C1515;">
-                        <h3 style="color: #8C1515; margin-bottom: 10px;">Higher Threshold (→)</h3>
-                        <ul style="margin-left: 20px; color: #820000;">
-                            <li>Fewer cases flagged as positive</li>
-                            <li><strong>Lower recall</strong> — miss more true pneumonia</li>
-                            <li><strong>Lower false positive rate</strong> — fewer false alarms</li>
-                            <li>More missed cases, less unnecessary workup</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="scenario-box">
-                    <h3>Clinical Context Matters</h3>
-                    <p><strong>Emergency screening:</strong> Use a lower threshold. Missing pneumonia in a sick patient (false negative) is dangerous. Accept more false positives that can be ruled out with further testing.</p>
-                    <p style="margin-top: 10px;"><strong>Confirmatory testing:</strong> Use a higher threshold. You want high confidence before initiating aggressive treatment. False positives lead to unnecessary interventions.</p>
                 </div>
             </div>
         </div>
